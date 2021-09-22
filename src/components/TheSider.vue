@@ -89,11 +89,11 @@ nav {
         color: rgb(255, 255, 255);
         background-color: rgb(153, 153, 153);
       }
+    }
 
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
+    a {
+      text-decoration: none;
+      color: inherit;
     }
   }
 }
