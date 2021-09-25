@@ -1,7 +1,7 @@
 <template>
   <li @click="handleOpen">
     <main><h4>{{fullName}}</h4> <vue-feather class="icon-container" :type="iconStatus"></vue-feather></main>
-    <div v-if="isOpen">
+    <div v-show="isOpen">
       <h5><a :href="userEmail">{{email}}</a></h5>
     </div>
   </li>

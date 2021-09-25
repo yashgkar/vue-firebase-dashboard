@@ -6,7 +6,8 @@
       <router-view />
     </div>
   </main>
-  <popup :show="isError" title="Error occurred!" @close="closePopup">
+  <popup :show="isError" title="Error occurred!" @close="closePopup"
+  >
     {{errorMessage}}
   </popup>
 </template>
@@ -44,6 +45,16 @@ export default {
     closePopup () {
       this.$store.dispatch('error', '')
     }
+  },
+  mounted () {
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.closePopup()
+      }
+    })
+  },
+  unmounted () {
+    window.removeEventListener('keydown')
   }
 }
 </script>
