@@ -17,11 +17,11 @@
             name="email"
             id="email"
             placeholder="Should include '@'"
-            :class="{'error': !email.isValid}"
+            :class="{ error: !email.isValid }"
             v-model="email.val"
             @blur="clearValidity('email')"
           />
-        <p v-if="!this.email.isValid">{{ this.email.error }}</p>
+          <p v-if="!this.email.isValid">{{ this.email.error }}</p>
         </div>
         <div class="form-control">
           <label for="fullName">Name:</label>
@@ -83,10 +83,17 @@ export default {
       this[field].error = null
     },
     validateForm () {
+      const emailCheck = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
       this.formIsValid = true
       if (this.email.val === '') {
         this.email.isValid = false
         this.email.error = "Email can't be empty"
+        this.formIsValid = false
+      } else if (
+        !emailCheck.test(this.email.val)
+      ) {
+        this.email.isValid = false
+        this.email.error = 'Email is invalid, Please try again with a valid email'
         this.formIsValid = false
       }
 
@@ -108,6 +115,10 @@ export default {
 
 <style lang="scss" scoped>
 .form-container {
-  width: 30rem;
+  width: 20rem;
+
+  @media screen and (max-width: 900px) {
+    width: 85vw;
+  }
 }
 </style>

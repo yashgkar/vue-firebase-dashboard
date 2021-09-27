@@ -15,13 +15,13 @@
           />
         </li>
       </router-link>
-      <li>
+      <!-- <li>
         <a href="https://github.com/yashgkar/vue-learning" target="_blank">
           <vue-feather
             type="github"
           />
         </a>
-      </li>
+      </li> -->
       <li @click="logout">
         <vue-feather
           type="log-out"
@@ -68,6 +68,11 @@ nav {
   background-color: rgb(228, 228, 228);
   border-radius: 0 10px 10px 0;
   box-shadow: 0px 0px 13px 7px rgba(206, 206, 206, 0.42);
+
+  @media screen and (max-width: 900px) {
+    top: 85px;
+    bottom: auto;
+  }
 
   ul {
     margin: 0;

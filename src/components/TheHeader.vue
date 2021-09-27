@@ -3,7 +3,7 @@
     <nav>
       <div class="home">
         <router-link to='/dashboard'>
-          <h3>{{ fullName }}</h3>
+          <h3 v-if="fullName">{{ fullName }}</h3>
         </router-link>
       </div>
       <ul v-if="isLoggedIn">
@@ -16,7 +16,11 @@
 <script>
 export default {
   props: {
-    fullName: String
+    fullName: {
+      type: String,
+      required: true,
+      default: ''
+    }
   },
   computed: {
     isLoggedIn () {

@@ -2,7 +2,7 @@
   <li @click="handleOpen">
     <main><h4>{{fullName}}</h4> <vue-feather class="icon-container" :type="iconStatus"></vue-feather></main>
     <div v-show="isOpen">
-      <h5><a :href="userEmail">{{email}}</a></h5>
+      <h5>Email: <a :href="userEmail">{{email}}</a></h5>
     </div>
   </li>
 </template>
@@ -46,6 +46,17 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  h5 {
+    a {
+      text-decoration: none;
+      color: #000;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
 </style>

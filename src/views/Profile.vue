@@ -2,6 +2,13 @@
   <div class="profile-container">
     <base-card>
       <h2>Profile</h2>
+      <vue-feather
+        v-if="isSubmitting"
+        type="loader"
+        animation="spin"
+        animation-speed="fast"
+        class="icon-container"
+      />
       <form @submit.prevent="submitForm">
         <div class="form-control">
           <label for="firstName">First Name:</label>
@@ -74,13 +81,15 @@ export default {
     async submitForm () {
       this.validateForm()
       if (this.formIsValid) {
+        this.isSubmitting = true
         const userId = this.$store.getters.userId
-        this.$store.dispatch('createUser', {
+        await this.$store.dispatch('createUser', {
           firstName: this.firstName.val,
           lastName: this.lastName.val,
           phoneNumber: this.phoneNumber.val,
           userId
         })
+        this.isSubmitting = false
       }
     },
     clearValidity (field) {
@@ -103,6 +112,23 @@ export default {
         this.phoneNumber.isValid = false
         this.phoneNumber.error = "Phone can't be empty"
         this.formIsValid = false
+      }
+    },
+    getStoreValues () {
+      this.firstName.val = this.$store.getters.firstName
+      this.lastName.val = this.$store.getters.lastName
+      this.phoneNumber.val = this.$store.getters.phoneNumber
+    }
+  },
+  computed: {
+    firstNameVal () {
+      return this.$store.getters.firstName
+    }
+  },
+  watch: {
+    firstNameVal (curVal, oldVal) {
+      if (curVal !== oldVal) {
+        this.getStoreValues()
       }
     }
   }

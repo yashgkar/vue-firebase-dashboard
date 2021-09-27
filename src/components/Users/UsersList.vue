@@ -58,7 +58,11 @@ export default {
 
 <style lang="scss">
 .list-container {
-  width: 40rem;
+  width: 20rem;
+
+  @media screen and (max-width: 900px) {
+    width: 85vw;
+  }
 
   ul {
     list-style-type: none;
